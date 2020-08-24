@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cat or dog classifier</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='stylesheets/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container py-5">
+
+      <header class="text-white text-center">
+        <h1 class="display-4">Cat Or Dog Image Classifier</h1>
+        <p class="lead mb-0">A simple neural network to predict whether there is a cat or a dog in the image</p>
+
+      <div class="row py-4">
+        <div class="col-lg-8 mx-auto">
+          <!-- File input -->
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+            </div>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="input_image"
+                aria-describedby="inputGroupFileAddon01">
+              <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            </div>
+          </div>
+          <!-- ========== -->
+          <br>
+          <div class="img_preview" id="image_preview_cont">
+            <img class="img_preview__image" src="" alt="Image Preview" />
+            <span class="img_preview__text">Image Preview</span>
+          </div>
+          
+          <button type="button" id="predict_button"  class="btn btn-primary">Predict</button>
+        </div>
+      </div>
+    </div>
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="prediction">Some text in the Modal..</p>
+      </div>
+    
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='js/classify_image.js') }}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='js/load_image.js') }}"
+    ></script>
+  </body>
+</html>
