@@ -1,8 +1,9 @@
 import os
 from flask import Flask, render_template, request
-import cv2
 import base64
+import numpy as np
 from Model.load_model import Loader
+from PIL import Image
 
 global model
 
@@ -33,13 +34,15 @@ def predict():
     imagestr = str(request.get_data())
 
     convertimage(imgstring=imagestr.split(',')[1])
-    x = cv2.imread(os.getcwd() + "/output.jpeg", 1)
+    x = Image.open(os.getcwd() + "/output.jpeg")
+    # x = cv2.imread(os.getcwd() + "/output.jpeg", 1)
 
     if x is None:
         os.remove("output.jpeg")
         return "No image was uploaded!!"
 
-    resized = cv2.resize(x, (224, 224), interpolation=cv2.INTER_AREA)
+    resized = x.resize((224, 224))
+    resized = np.asarray(resized)
     resized = resized.reshape(1, 224, 224, 3)
     resized = resized / 255
     prediction = model.predict(resized)
